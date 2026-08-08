@@ -1,1 +1,0 @@
-# Generali-POs
