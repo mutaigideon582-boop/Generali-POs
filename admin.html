@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <title>Generali POS - Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<!-- ==========================================
+     ADMIN APP
+========================================== -->
+
+<div id="adminApp" class="admin-app">
+
+
+    <!-- ======================================
+         SIDEBAR
+    ======================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                G
+            </div>
+
+            <div>
+
+                <strong>
+                    GENERALI
+                </strong>
+
+                <span>
+                    POS SYSTEM
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="admin-nav">
+
+            <button
+                class="nav-item active"
+                data-section="dashboard"
+            >
+                📊
+                <span>Dashboard</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="inventory"
+            >
+                📦
+                <span>Inventory</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="cashiers"
+            >
+                👥
+                <span>Cashiers</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="sessions"
+            >
+                🔐
+                <span>Active Sessions</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="sales"
+            >
+                💰
+                <span>Sales</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="reports"
+            >
+                📈
+                <span>Reports</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="nav-item"
+                id="logoutButton"
+            >
+                🚪
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ======================================
+         MAIN CONTENT
+    ======================================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Overview of your POS
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="adminName">
+                        Administrator
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==================================
+             DASHBOARD
+        =================================== -->
+
+        <section
+            id="dashboardSection"
+            class="admin-section active"
+        >
+
+            <div class="welcome-card">
+
+                <div>
+
+                    <span>
+                        Welcome back
+                    </span>
+
+                    <h2 id="welcomeName">
+                        Administrator
+                    </h2>
+
+                    <p>
+                        Manage your inventory,
+                        cashiers and sales from
+                        this dashboard.
+                    </p>
+
+                </div>
+
+                <div class="welcome-icon">
+                    📊
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        Today's Sales
+                    </span>
+
+                    <strong id="todaySales">
+                        KSh 0.00
+                    </strong>
+
+                    <small>
+                        Revenue today
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Products
+                    </span>
+
+                    <strong id="productCount">
+                        0
+                    </strong>
+
+                    <small>
+                        Active products
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Cashiers Online
+                    </span>
+
+                    <strong id="cashierOnline">
+                        0 / 15
+                    </strong>
+
+                    <small>
+                        Active sessions
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Admins Online
+                    </span>
+
+                    <strong id="adminOnline">
+                        0 / 2
+                    </strong>
+
+                    <small>
+                        Active sessions
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Quick Actions
+                            </h3>
+
+                            <p>
+                                Frequently used controls
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button
+                            class="action-button"
+                            data-section="inventory"
+                        >
+                            ➕
+                            <span>
+                                Add Product
+                            </span>
+                        </button>
+
+
+                        <button
+                            class="action-button"
+                            data-section="cashiers"
+                        >
+                            👤
+                            <span>
+                                Add Cashier
+                            </span>
+                        </button>
+
+
+                        <button
+                            class="action-button"
+                            data-section="sessions"
+                        >
+                            🔐
+                            <span>
+                                View Sessions
+                            </span>
+                        </button>
+
+
+                        <button
+                            class="action-button"
+                            data-section="reports"
+                        >
+                            📈
+                            <span>
+                                View Reports
+                            </span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                System Status
+                            </h3>
+
+                            <p>
+                                Current POS status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-status">
+
+                        <div>
+
+                            <span>
+                                Server
+                            </span>
+
+                            <strong
+                                id="serverStatus"
+                            >
+                                Checking...
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Database
+                            </span>
+
+                            <strong
+                                id="databaseStatus"
+                            >
+                                Connected
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                M-Pesa
+                            </span>
+
+                            <strong
+                                id="mpesaStatus"
+                            >
+                                Configured later
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             INVENTORY
+        =================================== -->
+
+        <section
+            id="inventorySection"
+            class="admin-section"
+        >
+
+            <div class="section-toolbar">
+
+                <div>
+
+                    <h2>
+                        Inventory
+                    </h2>
+
+                    <p>
+                        Manage products, prices and stock.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="showProductForm"
+                >
+                    ➕ Add Product
+                </button>
+
+            </div>
+
+
+            <div
+                id="productForm"
+                class="panel form-panel hidden"
+            >
+
+                <h3>
+                    Add Product
+                </h3>
+
+
+                <form id="addProductForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Barcode
+                            </label>
+
+                            <input
+                                id="productBarcode"
+                                type="text"
+                                placeholder="Scan or enter barcode"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="adminScanButton"
+                            >
+                                📷 Scan Barcode
+                            </button>
+
+                            <div
+                                id="reader"
+                                class="scanner-box"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Product Name
+                            </label>
+
+                            <input
+                                id="productName"
+                                type="text"
+                                placeholder="Product name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Selling Price
+                            </label>
+
+                            <input
+                                id="productPrice"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Opening Stock
+                            </label>
+
+                            <input
+                                id="productStock"
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="cancelProduct"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Save Product
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-toolbar">
+
+                    <input
+                        id="inventorySearch"
+                        type="search"
+                        placeholder="🔎 Search products..."
+                    >
+
+                    <button
+                        class="secondary-button"
+                        id="refreshInventory"
+                    >
+                        🔄 Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Barcode
+                                </th>
+
+                                <th>
+                                    Product
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Stock
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="inventoryTable"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
+                                    Loading products...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             CASHIERS
+        =================================== -->
+
+        <section
+            id="cashiersSection"
+            class="admin-section"
+        >
+
+            <div class="section-toolbar">
+
+                <div>
+
+                    <h2>
+                        Cashier Management
+                    </h2>
+
+                    <p>
+                        Manage up to 15 cashier accounts.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="showCashierForm"
+                >
+                    ➕ Add Cashier
+                </button>
+
+            </div>
+
+
+            <div
+                id="cashierForm"
+                class="panel form-panel hidden"
+            >
+
+                <h3>
+                    Create Cashier Account
+                </h3>
+
+
+                <form id="createCashierForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Cashier ID
+                            </label>
+
+                            <input
+                                id="cashierId"
+                                type="text"
+                                placeholder="CASH001"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                id="cashierName"
+                                type="text"
+                                placeholder="Cashier name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Password
+                            </label>
+
+                            <input
+                                id="cashierPassword"
+                                type="password"
+                                placeholder="Minimum 8 characters"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="cancelCashier"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Create Cashier
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Cashier Accounts
+                        </h3>
+
+                        <p>
+                            Maximum 15 active cashier accounts
+                        </p>
+
+                    </div>
+
+                    <strong id="cashierCount">
+                        0 / 15
+                    </strong>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Created
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="cashierTable"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="empty-state"
+                                >
+                                    Loading cashiers...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             ACTIVE SESSIONS
+        =================================== -->
+
+        <section
+            id="sessionsSection"
+            class="admin-section"
+        >
+
+            <div class="section-toolbar">
+
+                <div>
+
+                    <h2>
+                        Active Sessions
+                    </h2>
+
+                    <p>
+                        Monitor currently logged-in staff.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="secondary-button"
+                    id="refreshSessions"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        Admin Sessions
+                    </span>
+
+                    <strong id="activeAdminCount">
+                        0 / 2
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Cashier Sessions
+                    </span>
+
+                    <strong id="activeCashierCount">
+                        0 / 15
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    User ID
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    Login Time
+                                </th>
+
+                                <th>
+                                    Expires
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="sessionsTable"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="empty-state"
+                                >
+                                    Loading sessions...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             SALES
+        =================================== -->
+
+        <section
+            id="salesSection"
+            class="admin-section"
+        >
+
+            <div class="section-toolbar">
+
+                <div>
+
+                    <h2>
+                        Sales
+                    </h2>
+
+                    <p>
+                        Review completed transactions.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="secondary-button"
+                    id="refreshSales"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-toolbar">
+
+                    <input
+                        id="salesSearch"
+                        type="search"
+                        placeholder="🔎 Search receipt or cashier..."
+                    >
+
+                    <button
+                        class="secondary-button"
+                        id="exportSales"
+                    >
+                        📥 Export CSV
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Receipt
+                                </th>
+
+                                <th>
+                                    Cashier
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Payment
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="salesTable"
+                        >
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
+                                    Loading sales...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             REPORTS
+        =================================== -->
+
+        <section
+            id="reportsSection"
+            class="admin-section"
+        >
+
+            <div class="section-toolbar">
+
+                <div>
+
+                    <h2>
+                        Reports
+                    </h2>
+
+                    <p>
+                        Business performance overview.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <button
+                        class="secondary-button"
+                        id="printReport"
+                    >
+                        🖨️ Print
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        id="exportReport"
+                    >
+                        📥 Export
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>
+                        Today
+                    </span>
+
+                    <strong id="reportToday">
+                        KSh 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        This Week
+                    </span>
+
+                    <strong id="reportWeek">
+                        KSh 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        This Month
+                    </span>
+
+                    <strong id="reportMonth">
+                        KSh 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="reportTotal">
+                        KSh 0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Best Selling Products
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="bestSellingProducts"
+                    class="best-selling-list"
+                >
+
+                    <p class="empty-state">
+                        No sales recorded yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ==========================================
+     NOTIFICATION
+========================================== -->
+
+<div
+    id="notification"
+    class="notification"
+></div>
+
+
+
+<!-- ==========================================
+     BARCODE LIBRARY
+========================================== -->
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="login.js"></script>
+
+<script src="admin.js"></script>
+
+<script src="scanner.js"></script>
+
+<script src="reports.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function() {
+
+        const user =
+            await protectAdminPage();
+
+        if (!user) {
+            return;
+        }
+
+        const adminName =
+            document.getElementById(
+                "adminName"
+            );
+
+        const welcomeName =
+            document.getElementById(
+                "welcomeName"
+            );
+
+
+        if (adminName) {
+
+            adminName.textContent =
+                user.name;
+
+        }
+
+
+        if (welcomeName) {
+
+            welcomeName.textContent =
+                user.name;
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+                      </html>
