@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111827"
+    >
+
+    <title>
+        Generali POS - Cashier
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="cashier.css"
+    >
+
+</head>
+
+
+<body>
+
+<!-- ======================================
+     TOP BAR
+====================================== -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            G
+        </div>
+
+        <div>
+
+            <strong>
+                GENERALI POS
+            </strong>
+
+            <small>
+                Cashier
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="cashier-info">
+
+        <span
+            id="cashierName"
+        >
+            Cashier
+        </span>
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================
+     MAIN CONTENT
+====================================== -->
+
+<main class="cashier-page">
+
+
+    <!-- ==================================
+         BARCODE SECTION
+    ================================== -->
+
+    <section class="scanner-card">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h1>
+                    New Sale
+                </h1>
+
+                <p>
+                    Scan a barcode or enter it manually
+                </p>
+
+            </div>
+
+            <div class="scan-icon">
+                📷
+            </div>
+
+        </div>
+
+
+        <div class="barcode-row">
+
+            <input
+                type="text"
+                id="barcodeInput"
+                placeholder="Scan barcode..."
+                autocomplete="off"
+                inputmode="numeric"
+            >
+
+
+            <button
+                id="searchProductButton"
+                class="search-button"
+            >
+                Search
+            </button>
+
+        </div>
+
+
+        <div class="scanner-help">
+
+            <span>
+                📱
+            </span>
+
+            <span>
+                Use your phone's barcode scanner
+                or a Bluetooth/USB scanner.
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         CART
+    ================================== -->
+
+    <section class="cart-card">
+
+        <div class="cart-heading">
+
+            <div>
+
+                <h2>
+                    Cart
+                </h2>
+
+                <span>
+                    <span id="cartCount">
+                        0
+                    </span>
+                    items
+                </span>
+
+            </div>
+
+
+            <button
+                id="clearCartButton"
+                class="clear-button"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        >
+
+            <div class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    🛒
+                </div>
+
+                <strong>
+                    Cart is empty
+                </strong>
+
+                <span>
+                    Scan a barcode to add a product
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         TOTAL
+    ================================== -->
+
+    <section class="total-card">
+
+        <div class="total-label">
+
+            <span>
+                Total Amount
+            </span>
+
+            <strong>
+                KSh
+            </strong>
+
+        </div>
+
+
+        <div
+            id="cartTotal"
+            class="total-amount"
+        >
+            KSh 0.00
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         M-PESA CUSTOMER NUMBER
+    ================================== -->
+
+    <section class="payment-card">
+
+        <h2>
+            Payment
+        </h2>
+
+
+        <div class="phone-field">
+
+            <label
+                for="customerPhone"
+            >
+                Customer M-Pesa Number
+            </label>
+
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="07XXXXXXXX"
+                inputmode="tel"
+                autocomplete="tel"
+            >
+
+        </div>
+
+
+        <div class="payment-buttons">
+
+            <button
+                id="cashButton"
+                class="payment-button cash"
+                type="button"
+                onclick="payCash()"
+            >
+
+                <span class="payment-icon">
+                    💵
+                </span>
+
+                <span>
+
+                    <strong>
+                        Cash
+                    </strong>
+
+                    <small>
+                        Complete cash payment
+                    </small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                id="mpesaButton"
+                class="payment-button mpesa"
+                type="button"
+                onclick="payMpesa()"
+            >
+
+                <span class="payment-icon">
+                    📱
+                </span>
+
+                <span>
+
+                    <strong>
+                        M-Pesa
+                    </strong>
+
+                    <small>
+                        Send STK Push
+                    </small>
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ======================================
+     NOTIFICATION
+====================================== -->
+
+<div
+    id="notification"
+    class="notification"
+>
+</div>
+
+
+
+<!-- ======================================
+     RECEIPT MODAL
+====================================== -->
+
+<div
+    id="receiptModal"
+    class="modal"
+>
+
+    <div class="modal-overlay"></div>
+
+
+    <div class="receipt-modal">
+
+        <div class="modal-header">
+
+            <h2>
+                Payment Complete
+            </h2>
+
+
+            <button
+                id="closeReceipt"
+                type="button"
+                onclick="closeReceipt()"
+            >
+                ×
+            </button>
+
+        </div>
+<a href="/index.html" class="back-home-btn">
+    ← Back
+</a>
+
+        <div
+            id="receiptContent"
+            class="receipt-content"
+        >
+        </div>
+
+
+        <div class="receipt-actions">
+
+            <button
+                type="button"
+                class="receipt-button secondary"
+                onclick="closeReceipt()"
+            >
+                Close
+            </button>
+
+
+            <button
+                id="printReceipt"
+                type="button"
+                class="receipt-button primary"
+                onclick="printReceipt()"
+            >
+                🖨 Print Receipt
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================
+     SCRIPTS
+====================================== -->
+
+<script
+    src="js/auth.js"
+></script>
+
+<script
+    src="cashier.js"
+></script>
+<script src="api.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
