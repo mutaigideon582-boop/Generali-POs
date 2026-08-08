@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111827"
+    >
+
+    <title>
+        Generali POS - Dashboard
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #f3f4f6;
+
+            color:
+                #111827;
+        }
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .topbar {
+
+            height: 64px;
+
+            background:
+                #111827;
+
+            color:
+                white;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                0 20px;
+
+            position:
+                sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+        }
+
+        .logo {
+
+            width: 40px;
+
+            height: 40px;
+
+            background:
+                #2563eb;
+
+            border-radius:
+                10px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-weight:
+                900;
+
+            font-size:
+                20px;
+        }
+
+        .brand-name {
+
+            font-weight:
+                800;
+
+            font-size:
+                16px;
+        }
+
+        .user-area {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+        }
+
+        .user-info {
+
+            text-align:
+                right;
+        }
+
+        .user-name {
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+        }
+
+        .user-role {
+
+            font-size:
+                10px;
+
+            color:
+                #9ca3af;
+
+            text-transform:
+                uppercase;
+        }
+
+        .logout {
+
+            border:
+                none;
+
+            background:
+                #dc2626;
+
+            color:
+                white;
+
+            padding:
+                9px 12px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+        }
+
+        /* =====================================
+           CONTENT
+        ===================================== */
+
+        .container {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            padding:
+                24px 18px;
+        }
+
+        .heading {
+
+            margin-bottom:
+                22px;
+        }
+
+        .heading h1 {
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                5px;
+        }
+
+        .heading p {
+
+            color:
+                #6b7280;
+
+            font-size:
+                13px;
+        }
+
+        /* =====================================
+           QUICK ACTIONS
+        ===================================== */
+
+        .actions {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(
+                        160px,
+                        1fr
+                    )
+                );
+
+            gap:
+                12px;
+
+            margin-bottom:
+                22px;
+        }
+
+        .action {
+
+            border:
+                none;
+
+            background:
+                white;
+
+            padding:
+                18px;
+
+            border-radius:
+                12px;
+
+            text-align:
+                left;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.06
+                );
+
+            text-decoration:
+                none;
+
+            color:
+                #111827;
+        }
+
+        .action-icon {
+
+            font-size:
+                24px;
+
+            margin-bottom:
+                9px;
+        }
+
+        .action-title {
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+        }
+
+        .action-description {
+
+            font-size:
+                11px;
+
+            color:
+                #6b7280;
+
+            margin-top:
+                4px;
+        }
+
+        /* =====================================
+           STAT CARDS
+        ===================================== */
+
+        .stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(
+                        190px,
+                        1fr
+                    )
+                );
+
+            gap:
+                15px;
+
+            margin-bottom:
+                22px;
+        }
+
+        .stat {
+
+            background:
+                white;
+
+            border-radius:
+                13px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.05
+                );
+        }
+
+        .stat-label {
+
+            color:
+                #6b7280;
+
+            font-size:
+                12px;
+
+            margin-bottom:
+                8px;
+        }
+
+        .stat-value {
+
+            font-size:
+                25px;
+
+            font-weight:
+                800;
+        }
+
+        .stat-sub {
+
+            margin-top:
+                6px;
+
+            font-size:
+                10px;
+
+            color:
+                #6b7280;
+        }
+
+        /* =====================================
+           SECTIONS
+        ===================================== */
+
+        .grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                2fr 1fr;
+
+            gap:
+                18px;
+        }
+
+        .panel {
+
+            background:
+                white;
+
+            border-radius:
+                13px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.05
+                );
+        }
+
+        .panel h2 {
+
+            font-size:
+                16px;
+
+            margin-bottom:
+                15px;
+        }
+
+        /* =====================================
+           SALES LIST
+        ===================================== */
+
+        .sale-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            padding:
+                12px 0;
+
+            border-bottom:
+                1px solid #f3f4f6;
+
+        }
+
+        .sale-row:last-child {
+
+            border-bottom:
+                none;
+        }
+
+        .sale-left strong {
+
+            display:
+                block;
+
+            font-size:
+                12px;
+        }
+
+        .sale-left span {
+
+            font-size:
+                10px;
+
+            color:
+                #6b7280;
+        }
+
+        .sale-amount {
+
+            font-weight:
+                700;
+
+            font-size:
+                12px;
+        }
+
+        /* =====================================
+           STATUS
+        ===================================== */
+
+        .status {
+
+            display:
+                inline-block;
+
+            padding:
+                4px 7px;
+
+            border-radius:
+                5px;
+
+            font-size:
+                9px;
+
+            font-weight:
+                700;
+        }
+
+        .status-success {
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+        }
+
+        .status-pending {
+
+            background:
+                #fef3c7;
+
+            color:
+                #92400e;
+        }
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (
+            max-width: 700px
+        ) {
+
+            .topbar {
+
+                padding:
+                    0 12px;
+            }
+
+            .brand-name {
+
+                display:
+                    none;
+            }
+
+            .user-name {
+
+                font-size:
+                    11px;
+            }
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .container {
+
+                padding:
+                    18px 12px;
+            }
+
+            .heading h1 {
+
+                font-size:
+                    21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="logo">
+            G
+        </div>
+
+        <div class="brand-name">
+            GENERALI POS
+        </div>
+
+    </div>
+
+
+    <div class="user-area">
+
+        <div class="user-info">
+
+            <div
+                id="userName"
+                class="user-name"
+            >
+                Loading...
+            </div>
+
+            <div
+                id="userRole"
+                class="user-role"
+            >
+                Loading...
+            </div>
+
+        </div>
+
+
+        <button
+            id="logoutButton"
+            class="logout"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main class="container">
+
+
+    <section class="heading">
+
+        <h1 id="dashboardTitle">
+            Dashboard
+        </h1>
+
+        <p id="dashboardDescription">
+            Loading dashboard...
+        </p>
+
+    </section>
+
+
+    <!-- =================================
+         QUICK ACTIONS
+    ================================= -->
+
+    <section
+        id="quickActions"
+        class="actions"
+    >
+    </section>
+
+
+    <!-- =================================
+         STATISTICS
+    ================================= -->
+
+    <section
+        id="stats"
+        class="stats"
+    >
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Today's Sales
+            </div>
+
+            <div
+                id="totalSales"
+                class="stat-value"
+            >
+                KSh 0.00
+            </div>
+
+            <div class="stat-sub">
+                Total completed sales
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Cash Sales
+            </div>
+
+            <div
+                id="cashSales"
+                class="stat-value"
+            >
+                KSh 0.00
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                M-Pesa Sales
+            </div>
+
+            <div
+                id="mpesaSales"
+                class="stat-value"
+            >
+                KSh 0.00
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Transactions
+            </div>
+
+            <div
+                id="transactionCount"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         PANELS
+    ================================= -->
+
+    <section class="grid">
+
+
+        <!-- RECENT SALES -->
+
+        <div class="panel">
+
+            <h2>
+                Recent Sales
+            </h2>
+
+            <div
+                id="recentSales"
+            >
+
+                Loading sales...
+
+            </div>
+
+        </div>
+
+
+        <!-- SIDE PANEL -->
+
+        <div class="panel">
+
+            <h2 id="sidePanelTitle">
+                Information
+            </h2>
+
+            <div
+                id="sidePanel"
+            >
+
+                Loading...
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================
+     SHARED API
+===================================== -->
+
+<script src="/js/api.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+// ==========================================
+// ELEMENTS
+// ==========================================
+
+const userName =
+    document.getElementById(
+        "userName"
+    );
+
+
+const userRole =
+    document.getElementById(
+        "userRole"
+    );
+
+
+const dashboardTitle =
+    document.getElementById(
+        "dashboardTitle"
+    );
+
+
+const dashboardDescription =
+    document.getElementById(
+        "dashboardDescription"
+    );
+
+
+const quickActions =
+    document.getElementById(
+        "quickActions"
+    );
+
+
+const sidePanelTitle =
+    document.getElementById(
+        "sidePanelTitle"
+    );
+
+
+const sidePanel =
+    document.getElementById(
+        "sidePanel"
+    );
+
+
+const totalSales =
+    document.getElementById(
+        "totalSales"
+    );
+
+
+const cashSales =
+    document.getElementById(
+        "cashSales"
+    );
+
+
+const mpesaSales =
+    document.getElementById(
+        "mpesaSales"
+    );
+
+
+const transactionCount =
+    document.getElementById(
+        "transactionCount"
+    );
+
+
+const recentSales =
+    document.getElementById(
+        "recentSales"
+    );
+
+
+// ==========================================
+// LOAD USER
+// ==========================================
+
+async function initializeDashboard() {
+
+    try {
+
+        const user =
+            await POS_API.requireLogin(
+                [
+                    "admin",
+                    "cashier"
+                ]
+            );
+
+
+        if (!user) {
+
+            return;
+
+        }
+
+
+        userName.textContent =
+            user.name ||
+            user.username;
+
+
+        userRole.textContent =
+            user.role;
+
+
+        if (
+            user.role ===
+            "admin"
+        ) {
+
+            setupAdminDashboard();
+
+        }
+
+        else {
+
+            setupCashierDashboard();
+
+        }
+
+
+        await loadDashboardData();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        dashboardDescription.textContent =
+            error.message;
+
+    }
+
+}
+
+
+// ==========================================
+// ADMIN DASHBOARD
+// ==========================================
+
+function setupAdminDashboard() {
+
+    dashboardTitle.textContent =
+        "Admin Dashboard";
+
+
+    dashboardDescription.textContent =
+        "Monitor your entire POS operation.";
+
+
+    quickActions.innerHTML = `
+
+        <a
+            href="/admin.html"
+            class="action"
+        >
+
+            <div class="action-icon">
+                ⚙️
+            </div>
+
+            <div class="action-title">
+                Admin Panel
+            </div>
+
+            <div class="action-description">
+                Manage products and staff
+            </div>
+
+        </a>
+
+
+        <a
+            href="/cashier.html"
+            class="action"
+        >
+
+            <div class="action-icon">
+                🛒
+            </div>
+
+            <div class="action-title">
+                Open POS
+            </div>
+
+            <div class="action-description">
+                Open cashier terminal
+            </div>
+
+        </a>
+
+
+        <a
+            href="/dashboard.html"
+            class="action"
+        >
+
+            <div class="action-icon">
+                📊
+            </div>
+
+            <div class="action-title">
+                Reports
+            </div>
+
+            <div class="action-description">
+                View business performance
+            </div>
+
+        </a>
+
+    `;
+
+
+    sidePanelTitle.textContent =
+        "Administration";
+
+
+    sidePanel.innerHTML = `
+
+        <p style="
+            font-size:12px;
+            color:#6b7280;
+            line-height:1.6;
+        ">
+
+            You have administrator access.
+            You can manage products, stock,
+            staff accounts, sales and reports.
+
+        </p>
+
+    `;
+
+}
+
+
+// ==========================================
+// CASHIER DASHBOARD
+// ==========================================
+
+function setupCashierDashboard() {
+
+    dashboardTitle.textContent =
+        "Cashier Dashboard";
+
+
+    dashboardDescription.textContent =
+        "View your sales and current shift.";
+
+
+    quickActions.innerHTML = `
+
+        <a
+            href="/cashier.html"
+            class="action"
+        >
+
+            <div class="action-icon">
+                🛒
+            </div>
+
+            <div class="action-title">
+                New Sale
+            </div>
+
+            <div class="action-description">
+                Scan products and sell
+            </div>
+
+        </a>
+
+
+        <a
+            href="/dashboard.html"
+            class="action"
+        >
+
+            <div class="action-icon">
+                📊
+            </div>
+
+            <div class="action-title">
+                My Sales
+            </div>
+
+            <div class="action-description">
+                View today's transactions
+            </div>
+
+        </a>
+
+    `;
+
+
+    sidePanelTitle.textContent =
+        "My Account";
+
+
+    sidePanel.innerHTML = `
+
+        <p style="
+            font-size:12px;
+            color:#6b7280;
+            line-height:1.6;
+        ">
+
+            You are logged in as a cashier.
+            Your dashboard only shows
+            information belonging to your
+            account.
+
+        </p>
+
+    `;
+
+}
+
+
+// ==========================================
+// LOAD DASHBOARD DATA
+// ==========================================
+
+async function loadDashboardData() {
+
+    try {
+
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+
+        const result =
+            await POS_API.getDashboardSummary({
+
+                date:
+                    today
+
+            });
+
+
+        const data =
+            result.data ||
+            result;
+
+
+        totalSales.textContent =
+            POS_API.formatKES(
+                data.totalSales || 0
+            );
+
+
+        cashSales.textContent =
+            POS_API.formatKES(
+                data.cashSales || 0
+            );
+
+
+        mpesaSales.textContent =
+            POS_API.formatKES(
+                data.mpesaSales || 0
+            );
+
+
+        transactionCount.textContent =
+            data.transactionCount ||
+            data.numberOfSales ||
+            0;
+
+
+        displayRecentSales(
+            data.recentSales ||
+            []
+        );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Dashboard data unavailable:",
+            error.message
+        );
+
+
+        recentSales.innerHTML = `
+
+            <p style="
+                color:#6b7280;
+                font-size:12px;
+            ">
+
+                No sales data available yet.
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+// ==========================================
+// RECENT SALES
+// ==========================================
+
+function displayRecentSales(
+    sales
+) {
+
+    if (
+        !Array.isArray(
+            sales
+        ) ||
+        sales.length === 0
+    ) {
+
+        recentSales.innerHTML = `
+
+            <p style="
+                color:#6b7280;
+                font-size:12px;
+            ">
+
+                No recent sales.
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    recentSales.innerHTML =
+        sales
+            .slice(
+                0,
+                10
+            )
+            .map(
+                sale => `
+
+                    <div class="sale-row">
+
+                        <div class="sale-left">
+
+                            <strong>
+                                ${
+                                    escapeHTML(
+                                        sale.receipt_number ||
+                                        sale.receiptNumber ||
+                                        "Sale"
+                                    )
+                                }
+                            </strong>
+
+                            <span>
+                                ${
+                                    escapeHTML(
+                                        sale.payment_method ||
+                                        sale.paymentMethod ||
+                                        ""
+                                    )
+                                }
+                            </span>
+
+                        </div>
+
+                        <div class="sale-amount">
+
+                            ${POS_API.formatKES(
+                                sale.total_amount ||
+                                sale.totalAmount ||
+                                0
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+// ==========================================
+// HTML ESCAPE
+// ==========================================
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            POS_API.logoutUser();
+
+        }
+    );
+
+
+// ==========================================
+// START
+// ==========================================
+
+initializeDashboard();
+
+
+// ==========================================
+// REFRESH
+// ==========================================
+
+setInterval(
+    loadDashboardData,
+    30000
+);
+
+</script>
+
+
+</body>
+
+  </html>
