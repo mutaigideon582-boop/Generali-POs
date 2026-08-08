@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111827"
+    >
+
+    <title>
+        Generali POS - Login
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="login-page">
+
+
+    <!-- ==================================
+         LOGIN CARD
+    ================================== -->
+
+    <main class="login-card">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                G
+            </div>
+
+            <h1>
+                GENERALI POS
+            </h1>
+
+            <p>
+                Point of Sale System
+            </p>
+
+        </div>
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form
+            id="loginForm"
+            autocomplete="on"
+        >
+
+
+            <div class="welcome">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to continue
+                </p>
+
+            </div>
+
+
+
+            <!-- USERNAME -->
+
+            <div class="input-group">
+
+                <label
+                    for="username"
+                >
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span>
+                        👤
+                    </span>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group">
+
+                <label
+                    for="password"
+                >
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span>
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="password-toggle"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ERROR -->
+
+            <div
+                id="loginError"
+                class="login-error"
+                role="alert"
+            >
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                id="loginButton"
+                class="login-button"
+            >
+
+                <span id="loginButtonText">
+                    Sign In
+                </span>
+
+                <span
+                    id="loginSpinner"
+                    class="spinner"
+                >
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- SECURITY INFORMATION -->
+
+        <div class="security-info">
+
+            <div class="security-icon">
+                🔐
+            </div>
+
+            <div>
+
+                <strong>
+                    Secure access
+                </strong>
+
+                <p>
+                    Only authorized staff can
+                    access the POS system.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <span>
+                Generali POS
+            </span>
+
+            <span>
+                © 2026
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<script src="js/auth.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+// ==========================================
+// ELEMENTS
+// ==========================================
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+
+const usernameInput =
+    document.getElementById(
+        "username"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const loginButtonText =
+    document.getElementById(
+        "loginButtonText"
+    );
+
+
+const loginSpinner =
+    document.getElementById(
+        "loginSpinner"
+    );
+
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+
+const togglePassword =
+    document.getElementById(
+        "togglePassword"
+    );
+
+
+// ==========================================
+// SHOW ERROR
+// ==========================================
+
+function showLoginError(
+    message
+) {
+
+    loginError.textContent =
+        message;
+
+    loginError.classList.add(
+        "show"
+    );
+
+}
+
+
+// ==========================================
+// CLEAR ERROR
+// ==========================================
+
+function clearLoginError() {
+
+    loginError.textContent =
+        "";
+
+    loginError.classList.remove(
+        "show"
+    );
+
+}
+
+
+// ==========================================
+// LOADING STATE
+// ==========================================
+
+function setLoading(
+    loading
+) {
+
+    loginButton.disabled =
+        loading;
+
+
+    if (loading) {
+
+        loginButtonText.textContent =
+            "Signing in...";
+
+        loginSpinner.classList.add(
+            "show"
+        );
+
+    }
+
+    else {
+
+        loginButtonText.textContent =
+            "Sign In";
+
+        loginSpinner.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// PASSWORD VISIBILITY
+// ==========================================
+
+togglePassword.addEventListener(
+    "click",
+    () => {
+
+        const isPassword =
+            passwordInput.type ===
+            "password";
+
+
+        passwordInput.type =
+            isPassword
+                ? "text"
+                : "password";
+
+
+        togglePassword.textContent =
+            isPassword
+                ? "🙈"
+                : "👁";
+
+    }
+);
+
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+loginForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        clearLoginError();
+
+
+        const username =
+            usernameInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        if (
+            !username ||
+            !password
+        ) {
+
+            showLoginError(
+                "Enter your username and password."
+            );
+
+            return;
+
+        }
+
+
+        setLoading(
+            true
+        );
+
+
+        try {
+
+            const result =
+                await loginUser(
+                    username,
+                    password
+                );
+
+
+            const user =
+                result.user;
+
+
+            // --------------------------------
+            // Redirect according to role
+            // --------------------------------
+
+            if (
+                user.role ===
+                "admin"
+            ) {
+
+                window.location.href =
+                    "/admin.html";
+
+            }
+
+            else if (
+                user.role ===
+                "cashier"
+            ) {
+
+                window.location.href =
+                    "/cashier.html";
+
+            }
+
+            else {
+
+                clearSession();
+
+                throw new Error(
+                    "Your account has no valid POS role."
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            showLoginError(
+                error.message ||
+                "Unable to sign in."
+            );
+
+
+            passwordInput.value =
+                "";
+
+
+            passwordInput.focus();
+
+        }
+
+        finally {
+
+            setLoading(
+                false
+            );
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// CHECK EXISTING SESSION
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        const user =
+            await verifySession();
+
+
+        if (!user) {
+
+            return;
+
+        }
+
+
+        if (
+            user.role ===
+            "admin"
+        ) {
+
+            window.location.href =
+                "/admin.html";
+
+        }
+
+        else if (
+            user.role ===
+            "cashier"
+        ) {
+
+            window.location.href =
+                "/cashier.html";
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// FOCUS USERNAME
+// ==========================================
+
+usernameInput.focus();
+
+</script>
+
+
+</body>
+
+  </html>
